@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class Receta {
 	private Long id;
 	private String nombre;
-	private Dificultad dificultad;
+	private String dificultad;
 }
