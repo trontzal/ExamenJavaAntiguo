@@ -10,8 +10,8 @@ import com.gonzaloLecumberriExamen.entidades.Receta;
 @Component
 class DaoRecetasJdbc implements DaoReceta{
 	
-	private static final String SQL_SELECT = "SELECT * FROM recetas";
-	
+	private static final String SQL_SELECT = "SELECT recetas.id, recetas.nombre, dificultades.dificultad as dificultad FROM recetas JOIN dificultades ON recetas.dificultad_id = dificultades.id";
+	private static final String SQL_INSERT = "INSERT INTO recetas (nombre, dificultad_id) VALUES (?, ?)";
 	@Autowired
 	private JdbcTemplate jdbc;
 	
@@ -21,9 +21,9 @@ class DaoRecetasJdbc implements DaoReceta{
 	}
 
 	@Override
-	public Receta insertar(Receta objecto) {
-		// TODO Auto-generated method stub
-		return null;
+	public Receta insertar(Receta receta) {
+	    jdbc.update(SQL_INSERT, receta.getNombre(), receta.getDificultad());
+	    return receta;
 	}
 
 }
