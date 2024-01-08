@@ -1,0 +1,25 @@
+CREATE TABLE `dificultades` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `dificultad` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `recetas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) DEFAULT NULL,
+  `dificultad_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `dificultad_id` (`dificultad_id`),
+  CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`dificultad_id`) REFERENCES `dificultades` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+INSERT INTO dificultades (dificultad) VALUES ('Fácil');
+INSERT INTO dificultades (dificultad) VALUES ('Normal');
+INSERT INTO dificultades (dificultad) VALUES ('Difícil');
+
+
+INSERT INTO recetas (nombre, dificultad_id) VALUES ('Tortilla de patatas', 1);
+INSERT INTO recetas (nombre, dificultad_id) VALUES ('Spaghetti Bolognese', 2);
+INSERT INTO recetas (nombre, dificultad_id) VALUES ('Sushi', 3);
