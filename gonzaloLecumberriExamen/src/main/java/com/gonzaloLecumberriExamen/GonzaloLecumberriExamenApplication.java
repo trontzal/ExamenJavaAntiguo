@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.gonzaloLecumberriExamen.accesodatos.Dao;
 import com.gonzaloLecumberriExamen.accesodatos.DaoReceta;
 import com.gonzaloLecumberriExamen.entidades.Receta;
+import com.gonzaloLecumberriExamen.logicanegocio.AdminNegocio;
+import com.gonzaloLecumberriExamen.logicanegocio.UsuarioNegocio;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 
@@ -19,17 +21,17 @@ public class GonzaloLecumberriExamenApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private DaoReceta dao;
+	private  AdminNegocio admin;
 	
 
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Receta nuevaReceta = Receta.builder().nombre("Arroz con pollo").dificultad("1").build();
+		Receta nuevaReceta = Receta.builder().nombre("Bolognesa").dificultad("2").build();
 		
-//		dao.insertar(nuevaReceta);
+//		admin.insertarReceta(nuevaReceta);
 		
-		for (Receta p : dao.obtenerTodos()) {
+		for (Receta p : admin.listadoRecetas()) {
 			System.out.println(p);
 		}
 
