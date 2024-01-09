@@ -1,11 +1,16 @@
 package com.gonzaloLecumberriExamen.entidades;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Data
-//@Builder
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 public class Dificultad {
-//	private Long id;
-//	
-//	private String dificultad;
+	private Long id;
+	
+	private String dificultad;
 }
