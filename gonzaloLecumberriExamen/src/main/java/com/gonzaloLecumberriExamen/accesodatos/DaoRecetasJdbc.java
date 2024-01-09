@@ -1,11 +1,11 @@
 package com.gonzaloLecumberriExamen.accesodatos;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.gonzaloLecumberriExamen.entidades.Receta;
+import com.gonzaloLecumberriExamen.mapeadores.Dificultad2Receta;
 
 @Component
 class DaoRecetasJdbc implements DaoReceta {
@@ -18,12 +18,15 @@ class DaoRecetasJdbc implements DaoReceta {
 
 	@Override
 	public Iterable<Receta> obtenerTodos() {
-		return jdbc.query(SQL_SELECT, new BeanPropertyRowMapper<Receta>(Receta.class));
+		return jdbc.query(SQL_SELECT, new Dificultad2Receta());
 	}
 
 	@Override
 	public Receta insertar(Receta receta) {
-		jdbc.update(SQL_INSERT, receta.getNombre(), receta.getDificultad());
+		Long idDificultad = receta.getDificultad().getId();
+
+		jdbc.update(SQL_INSERT, receta.getNombre(), idDificultad);
+
 		return receta;
 	}
 
